@@ -1,0 +1,19 @@
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Effect": "Allow",
+      "Action": [
+        "ecr:*",
+        "eks:*",
+        "ec2:*",
+        "iam:PassRole",
+        "cloudformation:*",
+        "sts:GetCallerIdentity",
+        "s3:*",
+        "logs:*"
+      ],
+      "Resource": "*"
+    }
+  ]
+}
