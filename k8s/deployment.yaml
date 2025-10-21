@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: myapp
-          image: ACCOUNT_ID.dkr.ecr.REGION.amazonaws.com/myapp:latest
+          image: 290690313212.dkr.ecr.ap-south-1.amazonaws.com/myapp:latest
           ports:
             - containerPort: 80
           resources:
