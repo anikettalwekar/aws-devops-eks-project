@@ -1,7 +1,11 @@
-# AWS DevOps EKS Project
+# AWS DevOps EKS Project (By Aniket Talwekar)
 
-**Pipeline Flow:**  
+## Pipeline Flow
 GitHub → Jenkins → Docker → AWS ECR → Terraform → AWS EKS → Kubernetes → LoadBalancer → User
+
+## AWS Details
+- **Region:** ap-south-1
+- **Account ID:** 290690313212
 
 ## Tools Used
 - AWS (ECR, EKS, EC2, IAM, VPC)
@@ -13,9 +17,5 @@ GitHub → Jenkins → Docker → AWS ECR → Terraform → AWS EKS → Kubernet
 ## Output
 Access your app using the LoadBalancer URL:
 
-
-http://<external-loadbalancer-dns>/
-
-It will show:  
-**Hello from AWS EKS! 🚀**
-
+It will show:
+Hello from AWS EKS! 🚀
