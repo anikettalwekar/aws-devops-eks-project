@@ -12,3 +12,10 @@ GitHub → Jenkins → Docker → AWS ECR → Terraform → AWS EKS → Kubernet
 
 ## Output
 Access your app using the LoadBalancer URL:
+
+
+http://<external-loadbalancer-dns>/
+
+It will show:  
+**Hello from AWS EKS! 🚀**
+
