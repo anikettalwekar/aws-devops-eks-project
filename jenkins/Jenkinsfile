@@ -32,14 +32,13 @@ pipeline {
 }
 
     stage('Deploy to EKS') {
-      steps {
-        withAWS(region: env.AWS_DEFAULT_REGION, credentials: 'aws-creds') {
-          sh """
-            aws eks update-kubeconfig --name ${CLUSTER_NAME} --region ${AWS_DEFAULT_REGION}
-            sed -i 's#290690313212.dkr.ecr.ap-south-1.amazonaws.com/myapp:latest#${IMAGE_URI}#' k8s/deployment.yaml
-            kubectl apply -f k8s/deployment.yaml
-            kubectl apply -f k8s/service.yaml
-          """
+  steps {
+    withAWS(region: 'ap-south-1', credentials: 'aws-creds') {
+      sh '''
+        aws eks update-kubeconfig --name demo-eks --region ap-south-1
+        kubectl apply -f k8s/deployment.yaml
+        kubectl apply -f k8s/service.yaml
+      '''
         }
       }
     }
