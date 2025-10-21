@@ -20,17 +20,17 @@ pipeline {
       }
     }
     stage('Tag & Push') {
-      steps {
-        script {
-          def acct = sh(script: "aws sts get-caller-identity --query Account --output text", returnStdout: true).trim()
-          env.IMAGE_URI = "${acct}.dkr.ecr.${AWS_DEFAULT_REGION}.amazonaws.com/${ECR_REPO}:latest"
-          sh """
-            docker tag ${ECR_REPO}:latest ${IMAGE_URI}
-            docker push ${IMAGE_URI}
-          """
-        }
-      }
+  steps {
+    withAWS(region: 'ap-south-1', credentials: 'aws-creds') {
+      sh '''
+        ACCOUNT_ID=$(aws sts get-caller-identity --query Account --output text)
+        docker tag myapp:latest $ACCOUNT_ID.dkr.ecr.ap-south-1.amazonaws.com/myapp:latest
+        docker push $ACCOUNT_ID.dkr.ecr.ap-south-1.amazonaws.com/myapp:latest
+      '''
     }
+  }
+}
+
     stage('Deploy to EKS') {
       steps {
         withAWS(region: env.AWS_DEFAULT_REGION, credentials: 'aws-creds') {
