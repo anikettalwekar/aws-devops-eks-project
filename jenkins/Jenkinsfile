@@ -1,13 +1,13 @@
 pipeline {
   agent any
   environment {
-    AWS_DEFAULT_REGION = "us-east-1"
+    AWS_DEFAULT_REGION = "ap-south-1"
     ECR_REPO          = "myapp"
     CLUSTER_NAME      = "demo-eks"
   }
   stages {
     stage('Checkout') {
-      steps { git branch: 'main', url: 'https://github.com/<your-username>/aws-devops-eks-project.git' }
+      steps { git branch: 'main', url: 'https://github.com/anikettalwekar/aws-devops-eks-project.git' }
     }
     stage('Build Docker') {
       steps { sh 'docker build -t $ECR_REPO:latest app' }
@@ -36,7 +36,7 @@ pipeline {
         withAWS(region: env.AWS_DEFAULT_REGION, credentials: 'aws-creds') {
           sh """
             aws eks update-kubeconfig --name ${CLUSTER_NAME} --region ${AWS_DEFAULT_REGION}
-            sed -i 's#ACCOUNT_ID.dkr.ecr.REGION.amazonaws.com/${ECR_REPO}:latest#${IMAGE_URI}#' k8s/deployment.yaml
+            sed -i 's#290690313212.dkr.ecr.ap-south-1.amazonaws.com/myapp:latest#${IMAGE_URI}#' k8s/deployment.yaml
             kubectl apply -f k8s/deployment.yaml
             kubectl apply -f k8s/service.yaml
           """
