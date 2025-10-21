@@ -3,7 +3,7 @@
 #   backend "s3" {
 #     bucket         = "<tfstate-bucket>"
 #     key            = "eks-starter/terraform.tfstate"
-#     region         = "<region>"
+#     region         = "ap-south-1"
 #     dynamodb_table = "<lock-table>"
 #     encrypt        = true
 #   }
