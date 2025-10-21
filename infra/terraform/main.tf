@@ -10,11 +10,13 @@ module "vpc" {
   public_subnets  = ["10.0.1.0/24", "10.0.2.0/24"]
   enable_dns_support   = true
   enable_dns_hostnames = true
+  map_public_ip_on_launch = true   #  This line fixes your issue permanently
 
   tags = {
     Project = var.cluster_name
   }
 }
+
 
 module "eks" {
   source  = "terraform-aws-modules/eks/aws"
